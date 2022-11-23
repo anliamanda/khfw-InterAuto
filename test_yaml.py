@@ -8,17 +8,21 @@
 import yaml
 
 
-def yaml():
- 	env = {
- 		"defult": "test",
- 		"ksedu":
- 			{
- 			"dev": "",
- 			"test": "10.2.128.204:8081"
- 			}
- 		  }
-	with open("env2.yaml", "w") as f:
- 		yaml.safe_dump(data=env, stream=f)
+def test_yaml():
+	data = {
+		"method": "post",
+		"url": "https://khfw.ksedu.cn/gateway/web/api/v1/user/login",
+		"headers": {
+			"user-agent": "3333"
+			},
+		"json": {
+			"userName": "16651687259",
+			"password": "5977f8fa67648740112ae69b688261f5"
+		}
+	}
+	with open("config/login.yaml", "w") as f:
+ 		yaml.safe_dump(data=data, stream=f)
 
-
+if __name__ == '__main__':
+    test_yaml()
 

@@ -18,7 +18,7 @@ from testCase.testBase import TestBase
 
 class Testcase(TestBase):
 	classroom=class_Room()
-	
+	id=""
 	
 	@pytest.fixture()
 	def data(self):
@@ -41,22 +41,20 @@ class Testcase(TestBase):
 		assert self.classroom.save_classRoom(roomName)["success"] ==True
 
 
-  
 	@allure.title("更新教室")
 	#@pytest.mark.skip
 	@pytest.mark.parametrize("roomName",  yaml.safe_load(open("./config/classroom.yaml"))["update"])
 	@pytest.mark.run(order=3)
 	def test_update(self,roomName,data):
-		id = self.classroom.search_classRoom(data[0])["data"][0]["id"]
-		assert self.classroom.update_classRoom(roomName,id)["success"]==True
+		Testcase.id = self.classroom.search_classRoom(data[0])["data"][0]["id"]
+		assert self.classroom.update_classRoom(roomName,Testcase.id)["success"]==True
 
-	 
+
 	@allure.title("删除教室")
 	@pytest.mark.run(order=4)
 	def test_del(self, data):
 		try:
-			id = self.classroom.search_classRoom(data[1])["data"][0]["id"]
-			assert self.classroom.delete_classRoom(str(id))["success"] == True
+			assert self.classroom.delete_classRoom(str(Testcase.id))["success"] == True
 		except Exception as e:
 			self.log.error(e)
 			

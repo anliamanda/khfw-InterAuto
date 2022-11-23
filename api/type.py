@@ -11,9 +11,10 @@ class class_Type(baseApi):
 	def search_type(self, name):
 		data = {
 			"method": "post",
-			"url": "http://" + self.set_url() + "/web/api/v1/type/page",
+			"url": "https://" + self.set_url() + "/web/api/v1/type/page",
 			"headers": {
-				"Access-Token": self.token
+				"Access-Token": self.token,
+				"user-agent": "3333"
 				
 			},
 			"json": {
@@ -29,9 +30,10 @@ class class_Type(baseApi):
 	def save_type(self,name,source):
 		data = {
 			"method": "post",
-			"url": "http://" + self.set_url() + "/web/api/v1/type/save",
+			"url": "https://" + self.set_url() + "/web/api/v1/type/save",
 			"headers": {
-				"Access-Token": self.token
+				"Access-Token": self.token,
+				"user-agent": "3333"
 			},
 			"json": {
 				"name": name,
@@ -47,9 +49,10 @@ class class_Type(baseApi):
 	def update_type(self,name,source,id):
 			data = {
 				"method": "post",
-				"url": "http://" + self.set_url() + "/web/api/v1/type/update",
+				"url": "https://" + self.set_url() + "/web/api/v1/type/update",
 				"headers": {
-					"Access-Token": self.token
+					"Access-Token": self.token,
+					"user-agent": "3333"
 				},
 				"json": {
 					"name": name,
@@ -65,9 +68,10 @@ class class_Type(baseApi):
 	def delete_type(self,id):
 			data = {
 				"method": "get",
-				"url": "http://" + self.set_url() + "/web/api/v1/type/delete?ids=" + id,
+				"url": "https://" + self.set_url() + "/web/api/v1/type/delete?ids=" + id,
 				"headers": {
-					"Access-Token": self.token
+					"Access-Token": self.token,
+					"user-agent": "3333"
 				}
 			}
 			return self.send(data)

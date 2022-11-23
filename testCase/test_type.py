@@ -15,7 +15,7 @@ from testCase.testBase import TestBase
 @allure.feature("课后服务类型")
 class Testcase(TestBase):
 	classtype = class_Type()
-	
+	id=""
 	@allure.title("查询课后服务类型")
 	@pytest.mark.parametrize("name", ["","兴趣"])
 	@pytest.mark.run(order=1)
@@ -36,17 +36,16 @@ class Testcase(TestBase):
 	@pytest.mark.parametrize("name,source", [("test",2)])
 	@pytest.mark.run(order=3)
 	def test_updateType(self,name,source):
-		id=self.classtype.search_type("test1")["data"]["records"][0]["id"]
-		assert self.classtype.update_type(name,source,id)["success"] == True
-
-
+		Testcase.id=self.classtype.search_type("test1")["data"]["records"][0]["id"]
+		assert self.classtype.update_type(name,source,Testcase.id)["success"] == True
+		
+  
 	@allure.title("删除课后服务类型")
 	@pytest.mark.run(order=4)
+	#@pytest.mark.skip
 	def test_delClassRoom(self):
-		id=self.classtype.search_type("test")["data"]["records"][0]["id"]
 
-		assert self.classtype.delete_type(str(id))["success"] == True
-	#
+		assert self.classtype.delete_type(str(Testcase.id))["success"] == True
 		
 		
 	
